@@ -86,6 +86,15 @@ helm upgrade -i gpu-operator oci://ghcr.io/run-ai/fake-gpu-operator/fake-gpu-ope
   --version <VERSION>
 ```
 
+If you see an error about `resource.k8s.io` / Dynamic Resource Allocation (DRA): EKS typically does **not** expose the `resource.k8s.io` API, so install in legacy device-plugin mode by disabling the compute-domain controller:
+
+```bash
+helm upgrade -i gpu-operator oci://ghcr.io/run-ai/fake-gpu-operator/fake-gpu-operator \
+  --namespace gpu-operator --create-namespace \
+  --version 0.0.72 \
+  --set computeDomainController.enabled=false
+```
+
 ## 5) Install NVIDIA KAI Scheduler
 
 Install (choose a release from `NVIDIA/KAI-Scheduler`):
