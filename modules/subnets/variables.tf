@@ -23,3 +23,9 @@ variable "private_subnets" {
   }))
   description = "Map of private subnets with AZs"
 }
+
+variable "enable_nat_gateway" {
+  type        = bool
+  description = "Whether to create a NAT Gateway for private subnet egress (costly). If false, private subnets will not have internet egress by default."
+  default     = false
+}

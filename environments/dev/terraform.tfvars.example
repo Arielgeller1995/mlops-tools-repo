@@ -1,0 +1,24 @@
+environment    = "dev"
+region         = "eu-north-1"
+vpc_cidr_block = "10.0.0.0/16"
+
+# Keep it minimal to save credits. One AZ is enough for learning.
+public_subnets = {
+  public-a = { cidr = "10.0.1.0/24", az = "eu-north-1a" }
+}
+
+# Still created by the module, but in the cost-saving setup we run EKS in public subnets,
+# so these private subnets won't be used unless you enable NAT + move nodes to private.
+private_subnets = {
+  private-a = { cidr = "10.0.101.0/24", az = "eu-north-1a" }
+}
+
+cluster_name    = "mlops-dev"
+node_group_name = "mlops-dev-ng"
+
+# Cheapest default: 1 small node (increase for Kubeflow).
+desired_size = 1
+min_size     = 1
+max_size     = 1
+
+instance_types = ["t3.small"]
