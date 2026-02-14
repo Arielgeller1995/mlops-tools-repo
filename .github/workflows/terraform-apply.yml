@@ -1,9 +1,7 @@
 name: Terraform Apply on Main
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   detect-changes:
@@ -33,7 +31,8 @@ jobs:
     name: Apply Dev
     runs-on: ubuntu-latest
     needs: detect-changes
-    if: needs.detect-changes.outputs.dev == 'true'
+    # Safety: only applies when manually dispatched, or when dev paths changed (if you later re-enable push triggers).
+    if: github.event_name == 'workflow_dispatch' || needs.detect-changes.outputs.dev == 'true'
 
     env:
       AWS_REGION: eu-north-1
