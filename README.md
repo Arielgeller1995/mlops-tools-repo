@@ -91,9 +91,10 @@ If you see an error about `resource.k8s.io` / Dynamic Resource Allocation (DRA):
 ```bash
 helm upgrade -i gpu-operator oci://ghcr.io/run-ai/fake-gpu-operator/fake-gpu-operator \
   --namespace gpu-operator --create-namespace \
-  --version 0.0.72 \
-  --set computeDomainController.enabled=false
+  --version 0.0.63
 ```
+
+Note: at least `0.0.72` renders a `DeviceClass` (DRA) resource unconditionally and will fail on EKS with the error above. If you *must* use a newer chart, you’ll need a Kubernetes distro that enables DRA (`resource.k8s.io`), which is not standard on EKS.
 
 ## 5) Install NVIDIA KAI Scheduler
 
