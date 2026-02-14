@@ -2,15 +2,17 @@ environment    = "dev"
 region         = "eu-north-1"
 vpc_cidr_block = "10.0.0.0/16"
 
-# Keep it minimal to save credits. One AZ is enough for learning.
+# EKS requires subnets in *at least two different AZs*.
 public_subnets = {
   public-a = { cidr = "10.0.1.0/24", az = "eu-north-1a" }
+  public-b = { cidr = "10.0.2.0/24", az = "eu-north-1b" }
 }
 
 # Still created by the module, but in the cost-saving setup we run EKS in public subnets,
 # so these private subnets won't be used unless you enable NAT + move nodes to private.
 private_subnets = {
   private-a = { cidr = "10.0.101.0/24", az = "eu-north-1a" }
+  private-b = { cidr = "10.0.102.0/24", az = "eu-north-1b" }
 }
 
 cluster_name    = "mlops-dev"

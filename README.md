@@ -30,6 +30,8 @@ terraform plan
 terraform apply
 ```
 
+Note: **EKS requires subnets in at least two different AZs**. The provided `terraform.tfvars.example` includes 2 public subnets for this reason.
+
 ## 2) Connect `kubectl` to EKS
 
 ```bash
