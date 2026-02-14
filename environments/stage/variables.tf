@@ -57,3 +57,9 @@ variable "min_size" {
   description = "Minimum number of nodes in the node group"
   type        = number
 }
+
+variable "instance_types" {
+  description = "EKS node group instance types"
+  type        = list(string)
+  default     = ["t3.small"]
+}

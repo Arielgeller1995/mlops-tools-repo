@@ -46,14 +46,23 @@ variable "node_group_name" {
 variable "desired_size" {
   description = "Desired number of nodes in the node group"
   type        = number
+  default     = 1
 }
 
 variable "max_size" {
   description = "Maximum number of nodes in the node group"
   type        = number
+  default     = 1
 }
 
 variable "min_size" {
   description = "Minimum number of nodes in the node group"
   type        = number
+  default     = 1
+}
+
+variable "instance_types" {
+  description = "EKS node group instance types (keep small to save credits)"
+  type        = list(string)
+  default     = ["t3.small"]
 }
